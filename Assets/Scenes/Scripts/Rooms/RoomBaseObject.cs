@@ -32,6 +32,7 @@ public class RoomBaseObject : MonoBehaviour
     void AnalyseDestruction()
     {
         var requirements = ChainEvaluation(this, true);
+        requirements.roomsToDestroy.Reverse();
         if (requirements.canDestroy)
         {
             foreach(var room in requirements.roomsToDestroy)
@@ -42,10 +43,10 @@ public class RoomBaseObject : MonoBehaviour
     }
 
     //on room destruction, analyse the chain for other elements to destroy
-    (bool canDestroy, List<GameObject> roomsToDestroy) ChainEvaluation(RoomBaseObject caller, bool firstRoom)
+    (bool canDestroy, List<RoomBaseObject> roomsToDestroy) ChainEvaluation(RoomBaseObject caller, bool firstRoom)
     {
         //if no adjacent rooms, assume destruction enabled
-        (bool state, List<GameObject> destructionTargets) stateTargets = (true, new List<GameObject>());
+        (bool state, List<RoomBaseObject> destructionTargets) stateTargets = (true, new List<RoomBaseObject>());
         foreach(var room in adjacentRooms)
         {
             //If the room is the caller, we skip it (prevents rooms analyzing each other)
@@ -58,7 +59,7 @@ public class RoomBaseObject : MonoBehaviour
                 //Set a bool and gameobject list equal to an evaluation of the next part of the chain
                 stateTargets = room.ChainEvaluation(this, false);
                 //Add this room to the list of destruction targets when returning from recursive calls
-                stateTargets.destructionTargets.Add(gameObject);
+                stateTargets.destructionTargets.Add(this);
             }
 
             //Otherwise there is another branch connecting this chain
@@ -72,7 +73,6 @@ public class RoomBaseObject : MonoBehaviour
                 }
                 return (false, null);
             }
-            
         }
         return stateTargets;
     }
