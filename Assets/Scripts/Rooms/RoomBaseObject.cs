@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using System.Linq;
+using System.Threading.Tasks;
 
 public class RoomBaseObject : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RoomBaseObject : MonoBehaviour
     //protected UpgradeTypeObject? upgradeType = nulll;
     [SerializeField]
     public int Id;
+    public bool MarkedForDeath = false;
 
 
     
@@ -26,23 +28,47 @@ public class RoomBaseObject : MonoBehaviour
         adjacentRooms.Add(playersCurrentRoom);
     }
 
+    async void CleanupEvaluation(RoomBaseObject[] adjacentRooms, List<RoomBaseObject> roomFilter)
+    {
+        foreach(var room in adjacentRooms)
+        {
+            if (roomFilter.Contains(room))
+                continue;
+            roomFilter.Add(room);
+            room.MarkedForDeath = true;
+            print($"{room.Id} marked for death state is {room.MarkedForDeath}");
+            CleanupEvaluation(room.adjacentRooms.ToArray(), roomFilter);
+        }
+        await Task.Delay(50);
+        PerformCleanup(roomFilter.Where(room => room.MarkedForDeath == true).ToArray());
+    }
+    void PerformCleanup(RoomBaseObject[] allRooms)
+    {
+        DestroyChain(allRooms.Where(room=>room.Id != 0).ToList());
+        //print("death");
+        //foreach (var room in allRooms)
+        //{
+        //    Destroy(room);
+        //}
+    }
+
     
     void DestroyChain(List<RoomBaseObject> rooms)
     {
         foreach(var room in rooms)
         {
-            foreach(var adjRoom in room.adjacentRooms)
+            foreach (var adjRoom in room.adjacentRooms)
             {
                 adjRoom.adjacentRooms.Remove(room);
             }
-            Destroy(room.gameObject);
+            if(room != null)
+                Destroy(room.gameObject);
         }
     }
     void DestroyRoom()
     {
         foreach (var room in adjacentRooms)
             room.adjacentRooms.Remove(this);
-        
         Destroy(this.gameObject);
     }
 
@@ -58,6 +84,7 @@ public class RoomBaseObject : MonoBehaviour
         {
             DestroyRoom();
         }
+        CleanupEvaluation(this.adjacentRooms.ToArray(), new List<RoomBaseObject>());
     }
 
     //on room destruction, analyse the chain for other elements to destroy
@@ -118,8 +145,4 @@ public class RoomBaseObject : MonoBehaviour
             ReduceHealth(1);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 }

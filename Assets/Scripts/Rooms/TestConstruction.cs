@@ -87,16 +87,23 @@ public class TestConstruction : MonoBehaviour
             }
         }
     }
+    [SerializeField]
+    GameObject obj;
+    private void Update()
+    {
+        obj.transform.position = Selected.transform.position;
+    }
 
     IEnumerator ReassignDistanceFromCoreQueued()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForFixedUpdate();
         List<RoomBaseObject> roomFilter = new List<RoomBaseObject>();
         Queue<RoomBaseObject> rooms = new Queue<RoomBaseObject>();
         rooms.Enqueue(Core.GetComponent<RoomBaseObject>());
         roomFilter.Add(Core.GetComponent<RoomBaseObject>());
         List<RoomBaseObject> queuedRooms = new List<RoomBaseObject>();
         int distanceFromCore = 1;
+        Core.GetComponent<RoomBaseObject>().MarkedForDeath = false;
         while (rooms.Count > 0){
 
             queuedRooms.Add(rooms.Dequeue());
@@ -112,11 +119,13 @@ public class TestConstruction : MonoBehaviour
                         element.roomDistanceFromCenter = distanceFromCore;
                         rooms.Enqueue(element);
                         roomFilter.Add(element);
+                        element.MarkedForDeath = false;
                     }
                 }
                 distanceFromCore++;
             }
         }
+        print("Reassignment");
     }
 
 
@@ -140,12 +149,11 @@ public class TestConstruction : MonoBehaviour
 
     public void DamageRoom(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Selected != Core)
         {
             print("hit");
             Selected.GetComponent<RoomBaseObject>().ReduceHealth(100);
             StartCoroutine(ReassignDistanceFromCoreQueued());
-            //destroyedRoom = Selected.GetComponent<RoomBaseObject>();
             Selected = Core;
         }
     }
