@@ -45,7 +45,7 @@ public class playerScript : MonoBehaviour
         {
             if (currentItem == itemScriptableObject.itemType.NOTHING)
             {
-                Collider[] contacts = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.5f, itemLayer);
+                Collider[] contacts = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - 0.75f, transform.position.z), .5f, itemLayer);
                 foreach (Collider thing in contacts)
                 {
                     if (thing.gameObject.tag == "item")
@@ -79,7 +79,7 @@ public class playerScript : MonoBehaviour
                 foreach (Collider thing in contacts)
                 {
                     binScript theBin = thing.GetComponent<binScript>();
-                    if (theBin.acceptItem(currentItem))
+                    if (theBin.acceptItem(itemTransform.gameObject.GetComponent<itemReference>().myItem))
                     {
                         currentItem = itemScriptableObject.itemType.NOTHING;
                         Destroy(itemTransform.gameObject);

@@ -47,11 +47,33 @@
                 },
                 {
                     "name": "",
+                    "id": "3e8c3515-7bec-4650-b773-f6ddb7016f18",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f3b7aab5-0ee9-4bcf-a549-0c2bc6375710",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "pickup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c47d5696-9ae9-4a59-8cb2-3a7ac5706fb2",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
                     "action": "pickup",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -66,6 +88,17 @@
                     "action": "use",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51504ac6-f78d-4f73-b19f-5099941ff0b0",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "use",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -77,6 +110,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "joystick",
+            "bindingGroup": "joystick",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
                     "isOptional": false,
                     "isOR": false
                 }

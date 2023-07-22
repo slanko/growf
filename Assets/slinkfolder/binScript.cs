@@ -9,6 +9,7 @@ public class binScript : MonoBehaviour
     [SerializeField]
     List<recipeEntry> recipe;
     [SerializeField] TextMeshPro myText;
+    bool recipeSet = false;
 
     [System.Serializable]
     public struct recipeEntry
@@ -20,26 +21,43 @@ public class binScript : MonoBehaviour
 
     private void Start()
     {
-        myText.text = generateList();
+
     }
 
-    public bool acceptItem(itemScriptableObject.itemType theItem)
+    public bool acceptItem(itemScriptableObject theItem)
     {
         bool toReturn = false;
-        
-        for(int i = 0; i < recipe.Count; i++)
+
+        if (!recipeSet)
         {
-            if (recipe[i].entryType == theItem)
+            recipe.Clear();
+            foreach(recipeEntry entry in theItem.recipe)
             {
-                toReturn = true;
-                recipeEntry copyEntry;
-                copyEntry.entryType = recipe[i].entryType;
-                copyEntry.amountNeeded = recipe[i].amountNeeded - 1;
-                recipe[i] = copyEntry;
+                recipeEntry newEntry = new recipeEntry();
+                newEntry.entryType = entry.entryType;
+                newEntry.amountNeeded = entry.amountNeeded;
+                recipe.Add(newEntry);
             }
+            recipeSet = true;
+            toReturn = true;
+            myText.text = generateList();
         }
-        myText.text = generateList();
-        if (checkFulfilment()) Debug.Log("WAHOO WAHOO YOU DID IT!!! YOU DID IT!!! YES!@!!!");
+        else
+        {
+            for (int i = 0; i < recipe.Count; i++)
+            {
+                if (recipe[i].entryType == theItem.myType)
+                {
+                    toReturn = true;
+                    recipeEntry copyEntry;
+                    copyEntry.entryType = recipe[i].entryType;
+                    copyEntry.amountNeeded = recipe[i].amountNeeded - 1;
+                    recipe[i] = copyEntry;
+                }
+            }
+            myText.text = generateList();
+            if (checkFulfilment()) Debug.Log("WAHOO WAHOO YOU DID IT!!! YOU DID IT!!! YES!@!!!");
+        }
         return toReturn;
     }
 
