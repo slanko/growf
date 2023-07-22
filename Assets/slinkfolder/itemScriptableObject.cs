@@ -18,16 +18,11 @@ public class itemScriptableObject : ScriptableObject
         ELECTRONICS
     }
 
-    [System.Serializable]
-    public struct recipeEntry
-    {
-        public itemType entryType;
-        public int amountNeeded;
-    }
+
 
     public itemType myType;
     public Sprite mySprite;
-    public List<recipeEntry> recipe;
+    public List<binScript.recipeEntry> recipe;
 
 
 }
