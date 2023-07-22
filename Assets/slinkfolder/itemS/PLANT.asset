@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 6
   mySprite: {fileID: 0}
-  recipe: []
+  recipe:
+  - entryType: 6
+    amountNeeded: 1
+  - entryType: 1
+    amountNeeded: 1
+  instantiateRoom: {fileID: 0}

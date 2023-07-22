@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6d18422094a2e45b3493a0ada9f962, type: 3}
-  m_Name: METAL
+  m_Name: ELECTRONICS
   m_EditorClassIdentifier: 
-  myType: 1
+  myType: 7
   mySprite: {fileID: 0}
   recipe:
+  - entryType: 7
+    amountNeeded: 1
   - entryType: 1
     amountNeeded: 2
   instantiateRoom: {fileID: 0}
