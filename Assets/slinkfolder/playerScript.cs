@@ -15,7 +15,7 @@ public class playerScript : MonoBehaviour
 
     Transform gameCam;
 
-    [SerializeField] LayerMask itemLayer;
+    [SerializeField] LayerMask itemLayer, binLayer;
 
     //item stuff
     [SerializeField] Transform itemPoint;
@@ -41,27 +41,54 @@ public class playerScript : MonoBehaviour
 
     public void pickUpObject(InputAction.CallbackContext context)
     {
-        if(currentItem == itemScriptableObject.itemType.NOTHING) 
+        if (context.performed)
         {
-            Collider[] contacts = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.5f, itemLayer);
-            foreach (Collider thing in contacts)
+            if (currentItem == itemScriptableObject.itemType.NOTHING)
             {
-                if (thing.gameObject.tag == "item")
+                Collider[] contacts = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.5f, itemLayer);
+                foreach (Collider thing in contacts)
                 {
-                    currentItem = thing.gameObject.GetComponent<itemReference>().myItem.myType;
-                    itemTransform = thing.transform;
-                    thing.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    if (thing.gameObject.tag == "item")
+                    {
+                        currentItem = thing.gameObject.GetComponent<itemReference>().myItem.myType;
+                        itemTransform = thing.transform;
+                        thing.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    }
+                }
+            }
+            else
+            {
+                Rigidbody rb2 = itemTransform.gameObject.GetComponent<Rigidbody>();
+                rb2.constraints = RigidbodyConstraints.None;
+                rb2.velocity = rb.velocity;
+                itemTransform = null;
+                currentItem = itemScriptableObject.itemType.NOTHING;
+            }
+        }
+
+    }
+
+    public void useButton(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("USE!!");
+            if (currentItem != itemScriptableObject.itemType.NOTHING)
+            {
+                Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
+                foreach (Collider thing in contacts)
+                {
+                    binScript theBin = thing.GetComponent<binScript>();
+                    if (theBin.acceptItem(currentItem))
+                    {
+                        currentItem = itemScriptableObject.itemType.NOTHING;
+                        Destroy(itemTransform.gameObject);
+                        itemTransform = null;
+                    }
                 }
             }
         }
-        else
-        {
-            Rigidbody rb2 = itemTransform.gameObject.GetComponent<Rigidbody>();
-            rb2.constraints = RigidbodyConstraints.None;
-            rb2.velocity = rb.velocity;
-            itemTransform = null;
-            currentItem = itemScriptableObject.itemType.NOTHING;
-        }
+
     }
     // Start is called before the first frame update
     void Start()
