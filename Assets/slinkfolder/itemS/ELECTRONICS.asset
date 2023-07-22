@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 7
   mySprite: {fileID: 0}
+  recipeName: RADAR
   recipe:
   - entryType: 7
     amountNeeded: 1

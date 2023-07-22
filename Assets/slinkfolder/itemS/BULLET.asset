@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 4
   mySprite: {fileID: 0}
+  recipeName: GUN
   recipe:
   - entryType: 1
     amountNeeded: 2
   - entryType: 4
-    amountNeeded: 4
+    amountNeeded: 2
   instantiateRoom: {fileID: 0}

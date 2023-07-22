@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   mySprite: {fileID: 0}
+  recipeName: SCOOP
   recipe:
   - entryType: 1
     amountNeeded: 2

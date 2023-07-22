@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 6
   mySprite: {fileID: 0}
+  recipeName: HYDROPONICS
   recipe:
   - entryType: 6
     amountNeeded: 1

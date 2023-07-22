@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6d18422094a2e45b3493a0ada9f962, type: 3}
   m_Name: SAW
   m_EditorClassIdentifier: 
-  myType: 0
+  myType: 3
   mySprite: {fileID: 0}
+  recipeName: FISHING HOLE
   recipe:
   - entryType: 3
     amountNeeded: 0
