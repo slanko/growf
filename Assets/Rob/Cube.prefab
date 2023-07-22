@@ -112,3 +112,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adjacentRooms: []
   roomDistanceFromCenter: 0
+  Id: 0
+  MarkedForDeath: 0
