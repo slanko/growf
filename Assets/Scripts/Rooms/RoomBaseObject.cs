@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
+using UnityEngine.InputSystem;
 
 public class RoomBaseObject : MonoBehaviour
 {
@@ -23,11 +23,6 @@ public class RoomBaseObject : MonoBehaviour
     {
     }
 
-    void AssignAdjacentRooms(RoomBaseObject playersCurrentRoom)
-    {
-        adjacentRooms.Add(playersCurrentRoom);
-    }
-
     async void CleanupEvaluation(RoomBaseObject[] adjacentRooms, List<RoomBaseObject> roomFilter)
     {
         foreach(var room in adjacentRooms)
@@ -39,17 +34,13 @@ public class RoomBaseObject : MonoBehaviour
             print($"{room.Id} marked for death state is {room.MarkedForDeath}");
             CleanupEvaluation(room.adjacentRooms.ToArray(), roomFilter);
         }
-        await Task.Delay(50);
+        await Task.Delay(150);
+        Debug.Break();
         PerformCleanup(roomFilter.Where(room => room.MarkedForDeath == true).ToArray());
     }
     void PerformCleanup(RoomBaseObject[] allRooms)
     {
         DestroyChain(allRooms.Where(room=>room.Id != 0).ToList());
-        //print("death");
-        //foreach (var room in allRooms)
-        //{
-        //    Destroy(room);
-        //}
     }
 
     
@@ -124,6 +115,28 @@ public class RoomBaseObject : MonoBehaviour
             }
         }
         return stateTargets;
+    }
+
+    public void HandleUpgradeBin(itemScriptableObject.itemType item)
+    {
+        switch (item)
+        {
+            case itemScriptableObject.itemType.METAL:
+                break;
+            case itemScriptableObject.itemType.FUEL:
+                break;
+            case itemScriptableObject.itemType.SAW:
+                break;
+            case itemScriptableObject.itemType.BULLET:
+                break;
+            case itemScriptableObject.itemType.MINE:
+                break;
+            case itemScriptableObject.itemType.PLANT:
+                break;
+            case itemScriptableObject.itemType.ELECTRONICS:
+                break;
+
+        }
     }
 
 
