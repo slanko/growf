@@ -15,12 +15,53 @@ public class playerScript : MonoBehaviour
 
     Transform gameCam;
 
+    [SerializeField] LayerMask itemLayer;
+
+    //item stuff
+    [SerializeField] Transform itemPoint;
+    itemScriptableObject.itemType currentItem;
+    Transform itemTransform;
+
+
     public void getMovementInputs(InputAction.CallbackContext context)
     {
         moveVals = context.ReadValue<Vector2>();
-        if (!noMove) anim.SetFloat("xVal", moveVals.x);
-        else anim.SetFloat("xVal", 0);
-        anim.SetFloat("xValNegative", -anim.GetFloat("xVal"));
+        if (!noMove) 
+        {
+            anim.SetFloat("xVal", moveVals.x);
+            anim.SetFloat("moveMagnitude", moveVals.magnitude);
+        }
+        else
+        {
+            anim.SetFloat("xVal", 0);
+            anim.SetFloat("moveMagnitude", 0);
+        }
+        anim.SetFloat("moveMagnitudeNegative", -anim.GetFloat("moveMagnitude"));
+    }
+
+    public void pickUpObject(InputAction.CallbackContext context)
+    {
+        if(currentItem == itemScriptableObject.itemType.NOTHING) 
+        {
+            Collider[] contacts = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.5f, itemLayer);
+            foreach (Collider thing in contacts)
+            {
+                if (thing.gameObject.tag == "item")
+                {
+                    currentItem = thing.gameObject.GetComponent<itemReference>().myItem.myType;
+                    itemTransform = thing.transform;
+                    thing.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                }
+            }
+        }
+        else
+        {
+            Rigidbody rb2 = itemTransform.gameObject.GetComponent<Rigidbody>();
+            rb2.constraints = RigidbodyConstraints.None;
+            rb2.velocity = rb.velocity;
+            itemTransform = null;
+            currentItem = itemScriptableObject.itemType.NOTHING;
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -40,5 +81,12 @@ public class playerScript : MonoBehaviour
             velToSet.y = currentYVelocity;
             rb.velocity = velToSet;
         }
+
+        //item snapping
+        if (itemTransform != null)
+        {
+            itemTransform.position = itemPoint.position;
+            itemTransform.rotation = itemPoint.rotation;
+        }
+        }
     }
-}
