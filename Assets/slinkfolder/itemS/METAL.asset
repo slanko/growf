@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: METAL
   m_EditorClassIdentifier: 
   myType: 1
-  mySprite: {fileID: 0}
+  mySprite: {fileID: 21300000, guid: 80b07b1f2e51b3c47b41b98ee048f3b5, type: 3}
   recipeName: SCOOP
   recipe:
   - entryType: 1
