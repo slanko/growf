@@ -10,6 +10,7 @@ public class binScript : MonoBehaviour
     List<recipeEntry> recipe;
     [SerializeField] TextMeshPro myText;
     bool recipeSet = false;
+    string recipeName;
 
     [System.Serializable]
     public struct recipeEntry
@@ -31,6 +32,7 @@ public class binScript : MonoBehaviour
         if (!recipeSet)
         {
             recipe.Clear();
+            recipeName = theItem.recipeName;
             foreach(recipeEntry entry in theItem.recipe)
             {
                 recipeEntry newEntry = new recipeEntry();
@@ -46,7 +48,7 @@ public class binScript : MonoBehaviour
         {
             for (int i = 0; i < recipe.Count; i++)
             {
-                if (recipe[i].entryType == theItem.myType)
+                if (recipe[i].entryType == theItem.myType && recipe[i].amountNeeded > 0)
                 {
                     toReturn = true;
                     recipeEntry copyEntry;
@@ -64,8 +66,10 @@ public class binScript : MonoBehaviour
     string generateList()
     {
         string theList = "";
+        theList += "<u>" + recipeName + "</u>\n";
         foreach(recipeEntry entry in recipe)
         {
+            if(entry.amountNeeded > 0)
             theList += entry.entryType.ToString() + " x" + entry.amountNeeded + "\n";
         }
         return theList;

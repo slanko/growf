@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: BULLET
   m_EditorClassIdentifier: 
   myType: 4
-  mySprite: {fileID: 0}
+  mySprite: {fileID: 21300000, guid: 737b9c2850547d04ba154b4d63645112, type: 3}
+  recipeName: GUN
   recipe:
   - entryType: 1
     amountNeeded: 2
   - entryType: 4
-    amountNeeded: 4
+    amountNeeded: 2
   instantiateRoom: {fileID: 0}
