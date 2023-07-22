@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class RoomBaseObject : MonoBehaviour
 {
-    protected List<RoomBaseObject> adjacentRooms = new List<RoomBaseObject>();
+    public List<RoomBaseObject> adjacentRooms = new List<RoomBaseObject>();
     public int roomDistanceFromCenter;
     protected int roomHealth;
     protected bool isUpgraded;
     //protected UpgradeTypeObject? upgradeType = nulll;
+    [SerializeField]
+    public int Id;
 
 
     
@@ -24,9 +27,23 @@ public class RoomBaseObject : MonoBehaviour
     }
 
     
-    void DestroyRoom(GameObject room)
+    void DestroyChain(List<RoomBaseObject> rooms)
     {
-
+        foreach(var room in rooms)
+        {
+            foreach(var adjRoom in room.adjacentRooms)
+            {
+                adjRoom.adjacentRooms.Remove(room);
+            }
+            Destroy(room.gameObject);
+        }
+    }
+    void DestroyRoom()
+    {
+        foreach (var room in adjacentRooms)
+            room.adjacentRooms.Remove(this);
+        
+        Destroy(this.gameObject);
     }
 
     void AnalyseDestruction()
@@ -34,10 +51,11 @@ public class RoomBaseObject : MonoBehaviour
         var requirements = ChainEvaluation(this, true);
         if (requirements.canDestroy)
         {
-            foreach(var room in requirements.roomsToDestroy)
-            {
-                DestroyRoom(room.gameObject);
-            }
+            DestroyChain(requirements.roomsToDestroy);
+        }
+        else
+        {
+            DestroyRoom();
         }
     }
 
@@ -50,7 +68,10 @@ public class RoomBaseObject : MonoBehaviour
         {
             //If the room is the caller, we skip it (prevents rooms analyzing each other)
             if (room == caller)
+            {
+                stateTargets.destructionTargets.Add(this);
                 continue;
+            }
 
             //If the next room's distance is greater than this room's
             if (room.roomDistanceFromCenter > this.roomDistanceFromCenter)
@@ -68,9 +89,10 @@ public class RoomBaseObject : MonoBehaviour
                 if (firstRoom)
                 {
                     //Skip to the next element in the loop
+                    stateTargets.destructionTargets.Add(caller);
                     continue;
                 }
-                return (false, null);
+                return (false, new List<RoomBaseObject>());
             }
             
         }
@@ -78,12 +100,26 @@ public class RoomBaseObject : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+
+    public void ReduceHealth(int reduceBy)
     {
-        if (roomHealth == 0)
+        roomHealth -= reduceBy;
+        if (roomHealth <= 0)
         {
             AnalyseDestruction();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "mine")
+            ReduceHealth(4);
+        if (other.tag == "obstacle")
+            ReduceHealth(1);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
     }
 }
