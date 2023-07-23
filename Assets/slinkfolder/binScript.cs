@@ -7,6 +7,10 @@ using UnityEngine.Events;
 
 public class binScript : MonoBehaviour
 {
+    [SerializeField] RoomBaseObject myRoom;
+
+    [SerializeField] bool presetRecipe, noList;
+
     [SerializeField]
     List<recipeEntry> recipe;
     [SerializeField] TextMeshPro myText;
@@ -27,14 +31,15 @@ public class binScript : MonoBehaviour
 
     private void Start()
     {
-
+        if (noList) myText.text = "";
+        else myText.text = "MATERIAL\nv";
     }
 
     public bool acceptItem(itemScriptableObject theItem)
     {
         bool toReturn = false;
 
-        if (!recipeSet)
+        if (!recipeSet && !presetRecipe)
         {
             recipe.Clear();
             recipeName = theItem.recipeName;
@@ -76,12 +81,16 @@ public class binScript : MonoBehaviour
     string generateList()
     {
         string theList = "";
-        theList += "<u>" + recipeName + "</u>\n";
-        foreach(recipeEntry entry in recipe)
+        if (!noList)
         {
-            if(entry.amountNeeded > 0)
-            theList += entry.entryType.ToString() + " x" + entry.amountNeeded + "\n";
+            theList += "<u>" + recipeName + "</u>\n";
+            foreach (recipeEntry entry in recipe)
+            {
+                if (entry.amountNeeded > 0)
+                    theList += entry.entryType.ToString() + " x" + entry.amountNeeded + "\n";
+            }
         }
+
         return theList;
     }
 
@@ -94,4 +103,6 @@ public class binScript : MonoBehaviour
         }
         return toReturn;
     }
+
+
 }
