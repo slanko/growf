@@ -8,6 +8,8 @@ public class playerScript : MonoBehaviour
     [SerializeField] Animator anim;
 
     [SerializeField] float moveSpeed;
+    [SerializeField] Transform myVisual, lookAtHelper;
+    [SerializeField] float xRotationOffset;
 
     bool noMove;
     Vector2 moveVals;
@@ -116,4 +118,13 @@ public class playerScript : MonoBehaviour
             itemTransform.rotation = itemPoint.rotation;
         }
         }
+
+    void Update()
+    {
+        lookAtHelper.LookAt(gameCam);
+        myVisual.eulerAngles = new Vector3(lookAtHelper.eulerAngles.x + xRotationOffset, lookAtHelper.eulerAngles.y, 0);
     }
+
+}
+
+

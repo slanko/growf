@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5250462395389367790
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.055511683
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.40350437
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347217431019, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_Name
+      value: Little Guy
+      objectReference: {fileID: 0}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: e715fc56b08b87a41b68e1f294cb7931, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 940b1ca54cc56eb44a7622a14ead94e5, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: b12bd53c5442afa4c8dd420a05531e93, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: a49db38dc59573942aa79d2a68147802, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: cc1d20b49499e624d8d0c048a4b835f3, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: f8a6f6d72ae925444a8c6ebd069a646a, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: e0a22cf659e92f642b6f01f13f4fe4ba, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: da108b512ce2a72449e4f165c7f89a45, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2223ff08510c564408b00918e09cd79a, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: a8e613377ed2d7745bf6505a15eac5b2, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: a348d246bf3dca646a86344c941ba5df, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: 91f223f61e006f04888cbab57f8cddd5, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: 19e52bdeee3fa91498662d07e065e537, type: 3}
+    - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: spriteSet.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: e54ba8c22c338cd4a85f34470bfef780, type: 3}
+    - target: {fileID: 371496347363781962, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e715fc56b08b87a41b68e1f294cb7931, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
