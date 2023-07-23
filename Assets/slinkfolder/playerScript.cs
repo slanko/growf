@@ -11,13 +11,13 @@ public class playerScript : MonoBehaviour
     [SerializeField] Transform myVisual, lookAtHelper;
     [SerializeField] float xRotationOffset;
 
-    bool noMove;
+    bool noMove, fishing;
     Vector2 moveVals;
     Rigidbody rb;
 
     Transform gameCam;
 
-    [SerializeField] LayerMask itemLayer, binLayer;
+    [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer;
 
     //item stuff
     [SerializeField] Transform itemPoint;
@@ -75,6 +75,7 @@ public class playerScript : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("USE!!");
+            //IF HOLDING AN ITEM IT IS USED IN ITEM SPECIFIC STUFF
             if (currentItem != itemScriptableObject.itemType.NOTHING)
             {
                 Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
@@ -88,6 +89,11 @@ public class playerScript : MonoBehaviour
                         itemTransform = null;
                     }
                 }
+            }
+            //IF YOU HOLD NOTHING THEN YOU CAN USE THE OTHER STUFF. SPECIFIED HEREIN
+            if(currentItem == itemScriptableObject.itemType.NOTHING)
+            {
+                Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
             }
         }
 
