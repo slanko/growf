@@ -19,11 +19,14 @@ public class RoomBaseObject : MonoBehaviour
     [SerializeField]
     GameObject[] upgradePrefabs;
 
+    TestConstruction constructor;
+
 
     
     // Start is called before the first frame update
     void Start()
     {
+        constructor = GameObject.Find("GOD").GetComponent<TestConstruction>();
     }
 
     async void CleanupEvaluation(RoomBaseObject[] adjacentRooms, List<RoomBaseObject> roomFilter)
@@ -68,6 +71,10 @@ public class RoomBaseObject : MonoBehaviour
             room.adjacentRooms.Remove(this);
         Destroy(upgrade);
         Destroy(this.gameObject);
+    }
+    private void OnDestroy()
+    {
+        constructor.beginEvaluation();
     }
 
     void AnalyseDestruction()

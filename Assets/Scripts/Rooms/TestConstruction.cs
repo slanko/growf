@@ -13,14 +13,9 @@ public class TestConstruction : MonoBehaviour
     [SerializeField]
     GameObject Core = null;
     [SerializeField]
-    GameObject Selected = null;
+    RoomBaseObject providedRoom = null;
     int idValue = 1000;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Selected = Core;
-    }
 
 
     void ConstructRoom(Vector3 direction)
@@ -29,17 +24,18 @@ public class TestConstruction : MonoBehaviour
         Vector3[] rayDirections = { transform.forward, -transform.forward, transform.right, -transform.right };
 
         //Create new room with reference
-        var newRoom = Instantiate(roomTemplate, Selected.transform.position + (direction*3), transform.rotation).GetComponent<RoomBaseObject>();
+        var newRoom = Instantiate(roomTemplate, providedRoom.transform.position + (direction*3), transform.rotation).GetComponent<RoomBaseObject>();
         newRoom.Id = idValue++;
         
         //fire ray in cardinal directions to get newRoom's adjacents
         foreach(var dir in rayDirections)
         {
-            Debug.DrawRay(Selected.transform.position, direction * 3, Color.yellow, 10);
+            Debug.DrawRay(providedRoom.transform.position, direction * 3, Color.yellow, 10);
             RaycastHit hit;
             LayerMask mask = LayerMask.GetMask("RoomCast");
             if(Physics.Raycast(newRoom.transform.position, dir, out hit, 1.5f, mask))
             {
+                DoorHandler(newRoom.transform.position, dir, hit.transform.gameObject);
                 Debug.DrawRay(newRoom.transform.position, dir * 1.5f, Color.red, 10);
                 newRoom.adjacentRooms.Add(hit.transform.gameObject.GetComponent<RoomBaseObject>());
                 hit.transform.gameObject.GetComponent<RoomBaseObject>().adjacentRooms.Add(newRoom);
@@ -69,10 +65,13 @@ public class TestConstruction : MonoBehaviour
         //Else get the value + 1
         else
         {
-            newRoom.roomDistanceFromCenter = Selected.GetComponent<RoomBaseObject>().roomDistanceFromCenter + 1;
+            newRoom.roomDistanceFromCenter = providedRoom.roomDistanceFromCenter + 1;
         }
+    }
 
-        Selected = newRoom.gameObject;
+    void DoorHandler(Vector3 position, Vector3 direction, GameObject room)
+    {
+
     }
 
 
@@ -87,11 +86,11 @@ public class TestConstruction : MonoBehaviour
             }
         }
     }
-    [SerializeField]
-    GameObject obj;
-    private void Update()
+
+
+    public void beginEvaluation()
     {
-        obj.transform.position = Selected.transform.position;
+        StartCoroutine(ReassignDistanceFromCoreQueued());
     }
 
     IEnumerator ReassignDistanceFromCoreQueued()
@@ -135,48 +134,27 @@ public class TestConstruction : MonoBehaviour
     {
         RaycastHit hit;
         LayerMask mask = LayerMask.GetMask("RoomCast");
-        if(Physics.Raycast(Selected.transform.position, direction * 3, out hit, 3, mask))
+        //TODO: Determine if can be removed
+        if(!Physics.Raycast(providedRoom.transform.position, direction * 3, out hit, 3, mask))
         {
-            Debug.DrawRay(Selected.transform.position, direction * 3, Color.green, 100);
-            Selected = hit.transform.gameObject;
-        }
-        else
-        {
-            Debug.DrawRay(Selected.transform.position, direction * 3, Color.green, 100);
+            Debug.DrawRay(providedRoom.transform.position, direction * 3, Color.green, 100);
             ConstructRoom(direction);
         }
     }
 
-    public void DamageRoom(InputAction.CallbackContext context)
+    public void CreateRoom(string direction, RoomBaseObject room)
     {
-        bool canInteract = true;
-        if (context.performed && Selected != Core && canInteract)
-        {
-            canInteract = false;
-            Selected.GetComponent<RoomBaseObject>().ReduceHealth(100);
-            StartCoroutine(ReassignDistanceFromCoreQueued());
-            Selected = Core;
-        }
-        if (context.canceled)
-            canInteract = true;
-    }
-
-    public void GetInputs(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            var value = Path.GetFileName(context.ToString());
-            if (value[0] == 'w')
+        providedRoom = room;
+            if (direction == "North")
                 FireCast(Vector3.forward);
 
-            if (value[0] == 'a')
+            if (direction == "East")
                 FireCast(-Vector3.right);
 
-            if (value[0] == 's')
+            if (direction == "South")
                 FireCast(-Vector3.forward);
 
-            if (value[0] == 'd')
+            if (direction == "West")
                 FireCast(Vector3.right);
-        }
     }
 }
