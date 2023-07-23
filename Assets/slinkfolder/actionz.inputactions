@@ -101,6 +101,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GOD FUNCTIONS",
+            "id": "cd0e7f69-dd16-47fa-956e-2a1b2d523ca3",
+            "actions": [
+                {
+                    "name": "restart",
+                    "type": "Button",
+                    "id": "3bee3d88-1385-4a88-bf9a-825c6a12e1ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f4daec2-7d60-47e8-af6e-966939a09d0e",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "New control scheme",
+                    "action": "restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
@@ -121,6 +149,17 @@
             "devices": [
                 {
                     "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
                     "isOptional": false,
                     "isOR": false
                 }
