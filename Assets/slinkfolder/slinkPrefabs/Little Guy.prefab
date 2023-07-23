@@ -65,7 +65,6 @@ Transform:
   m_Children:
   - {fileID: 371496347504382725}
   - {fileID: 1241616755680194604}
-  - {fileID: 9053199814280455897}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -92,6 +91,9 @@ MonoBehaviour:
   binLayer:
     serializedVersion: 2
     m_Bits: 512
+  interactibleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   itemPoint: {fileID: 371496346944676459}
 --- !u!136 &371496347217431018
 CapsuleCollider:
@@ -233,6 +235,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 371496346944676459}
+  - {fileID: 9053199814280455897}
   m_Father: {fileID: 371496347504382725}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -392,13 +395,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3275649231860907770}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.04245, y: 1.5974455, z: -1.2983742}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000005066394}
+  m_LocalPosition: {x: -18.084898, y: 2.7028909, z: 2.5967667}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 371496347217431015}
-  m_RootOrder: 2
+  m_Father: {fileID: 371496347363781963}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5020649511808915284
 GameObject:

@@ -19,6 +19,8 @@ public class playerScript : MonoBehaviour
 
     [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer;
 
+    bool fishflip;
+
     //item stuff
     [SerializeField] Transform itemPoint;
     itemScriptableObject.itemType currentItem;
@@ -75,25 +77,45 @@ public class playerScript : MonoBehaviour
         if (context.performed)
         {
             Debug.Log("USE!!");
-            //IF HOLDING AN ITEM IT IS USED IN ITEM SPECIFIC STUFF
-            if (currentItem != itemScriptableObject.itemType.NOTHING)
+            if (!fishing)
             {
-                Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
-                foreach (Collider thing in contacts)
+                //IF HOLDING AN ITEM IT IS USED IN ITEM SPECIFIC STUFF
+                if (currentItem != itemScriptableObject.itemType.NOTHING)
                 {
-                    binScript theBin = thing.GetComponent<binScript>();
-                    if (theBin.acceptItem(itemTransform.gameObject.GetComponent<itemReference>().myItem))
+                    Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
+                    foreach (Collider thing in contacts)
                     {
-                        currentItem = itemScriptableObject.itemType.NOTHING;
-                        Destroy(itemTransform.gameObject);
-                        itemTransform = null;
+                        binScript theBin = thing.GetComponent<binScript>();
+                        if (theBin.acceptItem(itemTransform.gameObject.GetComponent<itemReference>().myItem))
+                        {
+                            currentItem = itemScriptableObject.itemType.NOTHING;
+                            Destroy(itemTransform.gameObject);
+                            itemTransform = null;
+                        }
+                    }
+                }
+                //IF YOU HOLD NOTHING THEN YOU CAN USE THE OTHER STUFF. SPECIFIED HEREIN
+                if (currentItem == itemScriptableObject.itemType.NOTHING)
+                {
+                    Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, interactibleLayer);
+                    foreach (Collider thing in contacts)
+                    {
+                        if (thing.tag == "fishing hole")
+                        {
+                            if (thing.GetComponent<fishingHelper>().flip) fishflip = true;
+                            fishing = true;
+                            if (!fishflip) anim.Play("fishingIdle");
+                            else anim.Play("fishingIdleFlipped");
+                            rb.constraints = RigidbodyConstraints.FreezeAll;
+                            transform.position = new Vector3(thing.transform.position.x, transform.position.y, thing.transform.position.z);
+                        }
                     }
                 }
             }
-            //IF YOU HOLD NOTHING THEN YOU CAN USE THE OTHER STUFF. SPECIFIED HEREIN
-            if(currentItem == itemScriptableObject.itemType.NOTHING)
+            else
             {
-                Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
+                anim.SetTrigger("REEL");
+                Invoke("stopFishing", 0.5f);
             }
         }
 
@@ -110,7 +132,7 @@ public class playerScript : MonoBehaviour
     {
         float currentYVelocity = rb.velocity.y;
         Vector3 moveVector = new Vector3(moveVals.x, 0, moveVals.y);
-        if (moveVector.magnitude != 0 && !noMove)
+        if (moveVector.magnitude != 0 && !noMove && !fishing)
         {
             Vector3 velToSet = transform.TransformDirection(moveVector) * moveSpeed;
             velToSet.y = currentYVelocity;
@@ -130,7 +152,11 @@ public class playerScript : MonoBehaviour
         lookAtHelper.LookAt(gameCam);
         myVisual.eulerAngles = new Vector3(lookAtHelper.eulerAngles.x + xRotationOffset, lookAtHelper.eulerAngles.y, 0);
     }
-
+    
+    void stopFishing()
+    {
+        fishing = false;
+    }
 }
 
 
