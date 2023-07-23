@@ -16,6 +16,10 @@ public class TestConstruction : MonoBehaviour
     RoomBaseObject providedRoom = null;
     int idValue = 1000;
 
+    [SerializeField]
+    Material DoorClosed;
+    [SerializeField]
+    Material DoorOpen;
 
 
     void ConstructRoom(Vector3 direction)
@@ -33,13 +37,15 @@ public class TestConstruction : MonoBehaviour
             Debug.DrawRay(providedRoom.transform.position, direction * 3, Color.yellow, 10);
             RaycastHit hit;
             LayerMask mask = LayerMask.GetMask("RoomCast");
-            if(Physics.Raycast(newRoom.transform.position, dir, out hit, 1.5f, mask))
+            if (Physics.Raycast(newRoom.transform.position, dir, out hit, 1.5f, mask))
             {
-                DoorHandler(newRoom.transform.position, dir, hit.transform.gameObject);
+                DoorOpener(newRoom.transform.position, dir);
                 Debug.DrawRay(newRoom.transform.position, dir * 1.5f, Color.red, 10);
                 newRoom.adjacentRooms.Add(hit.transform.gameObject.GetComponent<RoomBaseObject>());
                 hit.transform.gameObject.GetComponent<RoomBaseObject>().adjacentRooms.Add(newRoom);
             }
+            else
+                DoorCloser(newRoom.transform.position, dir);
         }
 
         //If multiple adjacencies, iterate through all to find and assign the lowest number + 1
@@ -69,9 +75,45 @@ public class TestConstruction : MonoBehaviour
         }
     }
 
-    void DoorHandler(Vector3 position, Vector3 direction, GameObject room)
+    void DoorOpener(Vector3 position, Vector3 direction)
     {
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask("WallLayer");
+        if (Physics.Raycast(position, direction, out hit, 3, mask))
+        {
+            //We hit a door
+            var parent = hit.transform;
+            for(int i = 0; i < parent.childCount; i++)
+            {
+                var piece = parent.GetChild(i);
+                if (!piece.name.Contains("Door"))
+                    continue;
+                if (piece.name.Contains("Frame"))
+                    piece.GetComponent<MeshRenderer>().material = DoorOpen;
+                else
+                    piece.gameObject.SetActive(false);
+            }
+        }
+    }
 
+    void DoorCloser(Vector3 position, Vector3 direction)
+    {
+        RaycastHit hit;
+        LayerMask mask = LayerMask.GetMask("WallLayer");
+        if (Physics.Raycast(position, direction, out hit, 3, mask))
+        {
+            var parent = hit.transform;
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                var piece = parent.GetChild(i);
+                if (!piece.name.Contains("Door"))
+                    continue;
+                if (piece.name.Contains("Frame"))
+                    piece.GetComponent<MeshRenderer>().material = DoorClosed;
+                else
+                    piece.gameObject.SetActive(true);
+            }
+        }
     }
 
 
