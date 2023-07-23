@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class binScript : MonoBehaviour
 {
     [SerializeField] RoomBaseObject myRoom;
-
+    TestConstruction constructor;
     [SerializeField] bool presetRecipe, noList;
 
     [SerializeField]
@@ -33,6 +33,7 @@ public class binScript : MonoBehaviour
     {
         if (noList) myText.text = "";
         else myText.text = "MATERIAL\nv";
+        constructor = GameObject.Find("GOD").GetComponent<TestConstruction>();
     }
 
     public bool acceptItem(itemScriptableObject theItem)
@@ -104,5 +105,9 @@ public class binScript : MonoBehaviour
         return toReturn;
     }
 
+    public void passConstructionInfo(string direction)
+    {
+        constructor.CreateRoom(direction, myRoom);
+    }
 
 }
