@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static itemScriptableObject;
+using UnityEngine.Events;
 
 public class binScript : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class binScript : MonoBehaviour
     [SerializeField] TextMeshPro myText;
     bool recipeSet = false;
     string recipeName;
+    public itemType firstItem;
+
+    [SerializeField]
+    UnityEvent myEvent;
 
     [System.Serializable]
     public struct recipeEntry
@@ -39,6 +44,7 @@ public class binScript : MonoBehaviour
                 newEntry.entryType = entry.entryType;
                 newEntry.amountNeeded = entry.amountNeeded;
                 recipe.Add(newEntry);
+                firstItem = theItem.myType;
             }
             recipeSet = true;
             toReturn = true;
@@ -58,7 +64,11 @@ public class binScript : MonoBehaviour
                 }
             }
             myText.text = generateList();
-            if (checkFulfilment()) Debug.Log("WAHOO WAHOO YOU DID IT!!! YOU DID IT!!! YES!@!!!");
+        }
+        if (checkFulfilment())
+        {
+            myEvent.Invoke();
+            Destroy(this.gameObject);
         }
         return toReturn;
     }
