@@ -9,12 +9,15 @@ public class RoomBaseObject : MonoBehaviour
 {
     public List<RoomBaseObject> adjacentRooms = new List<RoomBaseObject>();
     public int roomDistanceFromCenter;
-    protected int roomHealth;
+    protected int roomMaxHealth = 2;
+    protected int roomHealth = 2;
     protected bool isUpgraded;
-    //protected UpgradeTypeObject? upgradeType = nulll;
+    protected Upgrade upgrade = null;
     [SerializeField]
     public int Id;
     public bool MarkedForDeath = false;
+    [SerializeField]
+    GameObject[] upgradePrefabs;
 
 
     
@@ -53,13 +56,17 @@ public class RoomBaseObject : MonoBehaviour
                 adjRoom.adjacentRooms.Remove(room);
             }
             if(room != null)
+            {
+                Destroy(room.upgrade);
                 Destroy(room.gameObject);
+            }
         }
     }
     void DestroyRoom()
     {
         foreach (var room in adjacentRooms)
             room.adjacentRooms.Remove(this);
+        Destroy(upgrade);
         Destroy(this.gameObject);
     }
 
@@ -117,28 +124,17 @@ public class RoomBaseObject : MonoBehaviour
         return stateTargets;
     }
 
-    public void HandleUpgradeBin(itemScriptableObject.itemType item)
+    public void HandleUpgradeBin(itemScriptableObject item)
     {
-        switch (item)
-        {
-            case itemScriptableObject.itemType.METAL:
-                break;
-            case itemScriptableObject.itemType.FUEL:
-                break;
-            case itemScriptableObject.itemType.SAW:
-                break;
-            case itemScriptableObject.itemType.BULLET:
-                break;
-            case itemScriptableObject.itemType.MINE:
-                break;
-            case itemScriptableObject.itemType.PLANT:
-                break;
-            case itemScriptableObject.itemType.ELECTRONICS:
-                break;
-
-        }
+        Instantiate(item.instantiateRoom, this.transform.position,  Quaternion.identity);
+        this.roomMaxHealth = 4;
+        this.roomHealth *= 2;
     }
 
+    public void SetUpgrade(Upgrade upgrade)
+    {
+        this.upgrade = upgrade;
+    }
 
 
     public void ReduceHealth(int reduceBy)

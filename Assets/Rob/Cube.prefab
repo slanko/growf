@@ -114,3 +114,5 @@ MonoBehaviour:
   roomDistanceFromCenter: 0
   Id: 0
   MarkedForDeath: 0
+  upgradePrefabs:
+  - {fileID: 787465202282920757, guid: 81b45ec084eaf914986652660ee9c775, type: 3}

@@ -149,13 +149,16 @@ public class TestConstruction : MonoBehaviour
 
     public void DamageRoom(InputAction.CallbackContext context)
     {
-        if (context.performed && Selected != Core)
+        bool canInteract = true;
+        if (context.performed && Selected != Core && canInteract)
         {
-            print("hit");
+            canInteract = false;
             Selected.GetComponent<RoomBaseObject>().ReduceHealth(100);
             StartCoroutine(ReassignDistanceFromCoreQueued());
             Selected = Core;
         }
+        if (context.canceled)
+            canInteract = true;
     }
 
     public void GetInputs(InputAction.CallbackContext context)

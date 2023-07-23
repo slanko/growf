@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+
+public abstract class Upgrade : MonoBehaviour
 {
-
-
-    void Start()
+    [SerializeField]
+    protected GameObject itemPrefab;
+    protected RoomBaseObject associatedRoom = null;
+    
+    public Upgrade(RoomBaseObject room)
     {
-        
+        itemPrefab.name = "Upgrade";
+        associatedRoom = room;
     }
+    public abstract void InitializeUpgrade();
+    
 }
