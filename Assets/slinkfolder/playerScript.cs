@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,7 @@ public class playerScript : MonoBehaviour
 
     Transform gameCam;
 
-    [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer;
+    [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer, groundItemLayer;
 
     bool fishflip;
 
@@ -26,6 +27,7 @@ public class playerScript : MonoBehaviour
     itemScriptableObject.itemType currentItem;
     Transform itemTransform;
 
+    itemScriptableObject delayItem;
 
     public void getMovementInputs(InputAction.CallbackContext context)
     {
@@ -103,6 +105,7 @@ public class playerScript : MonoBehaviour
                         if (thing.tag == "fishing hole")
                         {
                             if (thing.GetComponent<fishingHelper>().flip) fishflip = true;
+                            else fishflip = false;
                             fishing = true;
                             if (!fishflip) anim.Play("fishingIdle");
                             else anim.Play("fishingIdleFlipped");
@@ -114,6 +117,7 @@ public class playerScript : MonoBehaviour
             }
             else
             {
+                fishingCheck();
                 anim.SetTrigger("REEL");
                 Invoke("stopFishing", 0.5f);
             }
@@ -156,6 +160,31 @@ public class playerScript : MonoBehaviour
     void stopFishing()
     {
         fishing = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        if(delayItem != null)
+        {
+            getItem(delayItem);
+            delayItem = null;
+        }
+    }
+
+    void fishingCheck()
+    {
+        Collider[] contacts = Physics.OverlapSphere(transform.position, 2, groundItemLayer);
+        if (contacts.Length != 0)
+        {
+            delayItem = contacts[0].GetComponent<groundItemScript>().myObject;
+            Destroy(contacts[0].gameObject);
+        }
+
+    }
+
+    void getItem(itemScriptableObject myObject)
+    {
+        GameObject newObject = Instantiate(myObject.itemObject);
+        currentItem = newObject.gameObject.GetComponent<itemReference>().myItem.myType;
+        itemTransform = newObject.transform;
+        newObject.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
 }
 

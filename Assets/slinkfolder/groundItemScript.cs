@@ -19,7 +19,7 @@ public class groundItemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.back * moveSpeed * Time.deltaTime * GOD.speedMult);
         if (transform.position.z < -10) Destroy(this.gameObject);
     }
 }

@@ -8,6 +8,7 @@ public class itemSpawner : MonoBehaviour
     [SerializeField] List<Transform> spawnPoints;
     [SerializeField] GameObject itemToSpawn;
     [SerializeField] itemScriptableObject defaultItem;
+    [SerializeField] int minTime, maxTime;
     [System.Serializable]
     struct itemSpawnStruct
     {
@@ -46,7 +47,7 @@ public class itemSpawner : MonoBehaviour
         }
         groundItemScript newItem = Instantiate(itemToSpawn, spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity).GetComponent<groundItemScript>();
         newItem.myObject = pickedItem;
-        yield return new WaitForSeconds(Random.Range(1, 5) * 1 - GOD.speedMult);
+        yield return new WaitForSeconds(Random.Range(minTime, maxTime) * 1 - GOD.speedMult);
         StartCoroutine(itemSpawnRoutine());
     }
 

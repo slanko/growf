@@ -24,7 +24,7 @@ public class itemScriptableObject : ScriptableObject
     public Sprite mySprite;
     public string recipeName;
     public List<binScript.recipeEntry> recipe;
-    public GameObject instantiateRoom;
+    public GameObject itemObject, instantiateRoom;
 
 
 }

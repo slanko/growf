@@ -20,4 +20,5 @@ MonoBehaviour:
     amountNeeded: 2
   - entryType: 4
     amountNeeded: 2
+  itemObject: {fileID: 1436610434219077936, guid: 85832f3525dba5548b22c1ffe3bcfac0, type: 3}
   instantiateRoom: {fileID: 0}

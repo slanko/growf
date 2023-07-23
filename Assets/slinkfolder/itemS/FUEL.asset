@@ -18,4 +18,5 @@ MonoBehaviour:
   recipe:
   - entryType: 1
     amountNeeded: 4
+  itemObject: {fileID: 4910551749320948711, guid: b17635fbdd3c1c74b963742b2061c2eb, type: 3}
   instantiateRoom: {fileID: 0}

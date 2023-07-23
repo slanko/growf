@@ -93,7 +93,10 @@ MonoBehaviour:
     m_Bits: 512
   interactibleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  groundItemLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   itemPoint: {fileID: 371496346944676459}
 --- !u!136 &371496347217431018
 CapsuleCollider:
