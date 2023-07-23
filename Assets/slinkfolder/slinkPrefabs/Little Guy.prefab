@@ -84,7 +84,7 @@ MonoBehaviour:
   moveSpeed: 5
   myVisual: {fileID: 371496347504382725}
   lookAtHelper: {fileID: 1241616755680194604}
-  xRotationOffset: 0
+  xRotationOffset: 30
   itemLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -201,6 +201,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d4c945b5-743f-4ea1-af60-6b510baba1ef
     m_ActionName: PLAYER/use[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bee3d88-1385-4a88-bf9a-825c6a12e1ee
+    m_ActionName: GOD FUNCTIONS/restart[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PLAYER

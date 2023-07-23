@@ -11,7 +11,7 @@ public class playerScript : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] Transform myVisual, lookAtHelper;
     [SerializeField] float xRotationOffset;
-
+    godscript god;
     bool noMove, fishing;
     Vector2 moveVals;
     Rigidbody rb;
@@ -128,7 +128,10 @@ public class playerScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        gameCam = GameObject.Find("Main Camera").transform;
+        gameCam = GameObject.Find("CamBuddy/Main Camera").transform;
+        GameObject.Find("CamBuddy").GetComponent<camScript>().playerTransforms.Add(transform); //when you die do this in reverse after a delay.
+        god = GameObject.Find("GOD").GetComponent<godscript>();
+        transform.position = god.getSpawnPoint().position;
     }
 
     // Update is called once per frame
