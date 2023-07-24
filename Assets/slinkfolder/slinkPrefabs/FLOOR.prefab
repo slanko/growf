@@ -454,12 +454,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: North
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -471,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -709,12 +729,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: West
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -726,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -837,6 +877,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bin
       objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myRoom
+      value: 
+      objectReference: {fileID: 1992835688582036005}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1359639599429308806}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1992835688582036005}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: spawnPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HandleUpgradeBin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: binScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RoomBaseObject, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: itemScriptableObject, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448302, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -893,6 +989,42 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.3383
       objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00000014901163
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9914449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.13052595
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939469, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939470, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
 --- !u!4 &1359639599429308802 stripped
@@ -900,6 +1032,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3355480243553448302, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
   m_PrefabInstance: {fileID: 4345804881707262188}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1359639599429308806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+  m_PrefabInstance: {fileID: 4345804881707262188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c7c72bc701f3e4a8c421031577063b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5670762140699722634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,12 +1063,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: South
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -937,7 +1100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1057,12 +1220,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: East
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -1074,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target

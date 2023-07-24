@@ -18,7 +18,8 @@ public class playerScript : MonoBehaviour
 
     Transform gameCam;
 
-    [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer, groundItemLayer;
+    [SerializeField] LayerMask itemLayer, binLayer, interactibleLayer, groundItemLayer, roomMaskLayer;
+    [SerializeField] QueryTriggerInteraction triggerInteract;
 
     bool fishflip;
 
@@ -122,10 +123,26 @@ public class playerScript : MonoBehaviour
                 Invoke("stopFishing", 0.5f);
             }
         }
-
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void consumeButton(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (currentItem == itemScriptableObject.itemType.SAW)
+            {
+                Collider[] roomColliders = Physics.OverlapBox(transform.position, new Vector3(.1f, .1f, .1f), Quaternion.identity, roomMaskLayer, triggerInteract);
+                if(roomColliders.Length > 0)
+                {
+                    RoomBaseObject room = roomColliders[0].GetComponent<RoomBaseObject>();
+                    room.ReduceHealth(1);
+                    Debug.Log("Saw Used");
+                }
+            }
+        }
+    }
+        // Start is called before the first frame update
+        void Start()
     {
         rb = GetComponent<Rigidbody>();
         gameCam = GameObject.Find("CamBuddy/Main Camera").transform;

@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d6d18422094a2e45b3493a0ada9f962, type: 3}
-  m_Name: METAL
+  m_Name: NOTHING
   m_EditorClassIdentifier: 
-  myType: 1
-  mySprite: {fileID: 21300000, guid: 80b07b1f2e51b3c47b41b98ee048f3b5, type: 3}
-  recipeName: SCOOP
-  recipe:
-  - entryType: 1
-    amountNeeded: 2
-  itemObject: {fileID: 9145373821556611612, guid: 63bb64d68bf746245913f6712ea7b365, type: 3}
-  instantiateRoom: {fileID: 2819016028910615285, guid: bf67dbd59d7fb0a4b8b01f6a30c53a55, type: 3}
+  myType: 0
+  mySprite: {fileID: 0}
+  recipeName: 
+  recipe: []
+  itemObject: {fileID: 0}
+  instantiateRoom: {fileID: 0}

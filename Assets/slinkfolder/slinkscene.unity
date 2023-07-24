@@ -1445,12 +1445,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: North
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -1462,7 +1482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4494,6 +4514,15 @@ MonoBehaviour:
     amountNeeded: 1
   myText: {fileID: 333886821}
   firstItem: 0
+  checkAdjacency: 0
+  direction: 
+  binLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  roomCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  triggerInteraction: 0
   myEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5076,8 +5105,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 1392644183}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -13.376}
 --- !u!1 &656844736
 GameObject:
@@ -6270,8 +6299,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 1392644183}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 19.177}
 --- !u!1 &931680290
 GameObject:
@@ -6584,12 +6613,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: East
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -6601,7 +6650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7437,6 +7486,15 @@ MonoBehaviour:
     amountNeeded: 1
   myText: {fileID: 1980920852}
   firstItem: 0
+  checkAdjacency: 0
+  direction: 
+  binLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  roomCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  triggerInteraction: 0
   myEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9397,6 +9455,8 @@ Transform:
   - {fileID: 152801440}
   - {fileID: 2035981462}
   - {fileID: 1454626700}
+  - {fileID: 653836749}
+  - {fileID: 927093723}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11174,12 +11234,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: West
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -11191,7 +11271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12617,6 +12697,15 @@ MonoBehaviour:
     amountNeeded: 1
   myText: {fileID: 460416465}
   firstItem: 0
+  checkAdjacency: 0
+  direction: 
+  binLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  roomCastLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  triggerInteraction: 0
   myEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12719,12 +12808,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: direction
+      value: South
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: presetRecipe
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: checkAdjacency
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: binLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: triggerInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: roomCastLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: recipe.Array.data[0].amountNeeded
@@ -12736,7 +12845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14612,7 +14721,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStarted: 1
-  speedMult: 0.5
   playerPrefabs:
   - {fileID: 7202822586812016758, guid: c58dd47fb6322b24d8e5dbf5a04b261a, type: 3}
   - {fileID: 5618999539030219781, guid: d473df595c3328e448742824dfc75f64, type: 3}
@@ -14623,6 +14731,7 @@ MonoBehaviour:
   - {fileID: 703034211}
   - {fileID: 1357762419}
   - {fileID: 425011528}
+  speedMult: 0.5
 --- !u!114 &2078887255
 MonoBehaviour:
   m_ObjectHideFlags: 0

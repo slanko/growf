@@ -6,11 +6,14 @@ using UnityEngine.InputSystem;
 public class godscript : MonoBehaviour
 {
     public bool gameStarted;
-    public float speedMult;
     PlayerInputManager manager;
     [SerializeField] List<GameObject> playerPrefabs;
     [SerializeField] List<Transform> spawnPoints;
     int playerInt = 0;
+
+    //engines
+    public float speedMult = 0;
+    int engineCount = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +34,12 @@ public class godscript : MonoBehaviour
 
     public void addEngine()
     {
-
+        engineCount++;
     }
 
     public void removeEngine()
     {
-
+        engineCount--;
     }
 
     public void playerJoinBehaviour()

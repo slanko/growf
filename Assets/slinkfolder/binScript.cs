@@ -17,6 +17,14 @@ public class binScript : MonoBehaviour
     bool recipeSet = false;
     string recipeName;
     public itemType firstItem;
+    GameObject selectedRoomPrefab;
+
+    [Header("Room Construction Specific")]
+    public bool checkAdjacency;
+    [SerializeField, Header("EAST AND WEST ARE FLIPPED!!")]
+    string direction;
+    [SerializeField] LayerMask binLayer, roomCastLayer;
+    [SerializeField] QueryTriggerInteraction triggerInteraction;
 
     [SerializeField]
     UnityEvent myEvent;
@@ -34,6 +42,7 @@ public class binScript : MonoBehaviour
         if (noList) myText.text = "";
         else myText.text = "MATERIAL\nv";
         constructor = GameObject.Find("GOD").GetComponent<TestConstruction>();
+        if(checkAdjacency) checkIfAdjacent();
     }
 
     public bool acceptItem(itemScriptableObject theItem)
@@ -51,6 +60,7 @@ public class binScript : MonoBehaviour
                 newEntry.amountNeeded = entry.amountNeeded;
                 recipe.Add(newEntry);
                 firstItem = theItem.myType;
+                if(theItem.instantiateRoom != null) selectedRoomPrefab = theItem.instantiateRoom;
             }
             recipeSet = true;
             toReturn = true;
@@ -105,9 +115,42 @@ public class binScript : MonoBehaviour
         return toReturn;
     }
 
-    public void passConstructionInfo(string direction)
+    public void passConstructionInfo()
     {
         constructor.CreateRoom(direction, myRoom);
+    }
+
+    void checkIfAdjacent()
+    {
+        //two raycast system. first checks for other bins and deletes them. then the bin checks for rooms (if there are other bins there are probably rooms but hey) and then if there is it deletes itself.
+        Vector3 castDirection = new Vector3();
+        switch (direction)
+        {
+            case "North": castDirection = Vector3.forward; break;
+            case "South": castDirection = Vector3.back; break;
+                //these two are wrong but it's because they're wrong in a script i can't edit. life is just like this
+            case "East": castDirection = Vector3.left; break;
+            case "West": castDirection = Vector3.right; break;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, castDirection, out hit, 2f, binLayer, triggerInteraction))
+        {
+            if(hit.collider != null)
+            {
+                if (hit.collider.GetComponent<binScript>().checkAdjacency) Destroy(hit.collider.gameObject);
+            }
+        }
+        if (Physics.Raycast(transform.position, castDirection, out hit, 2f, roomCastLayer, triggerInteraction))
+        {
+            if (hit.collider != null) Destroy(this.gameObject);
+        }
+    }
+
+    public void spawnPrefab()
+    {
+        
+        if(selectedRoomPrefab != null) Instantiate(selectedRoomPrefab, myRoom.transform.position, myRoom.transform.rotation, myRoom.transform);
     }
 
 }
