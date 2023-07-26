@@ -41,10 +41,12 @@ public class RoomHandler : MonoBehaviour
     void FireCast(Vector3 direction, BaseRoom room)
     {
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("RoomCast");
+        LayerMask mask = LayerMask.GetMask("RoomCast", "UpgradeLayer");
         //TODO: Determine if can be removed
         if (!Physics.Raycast(room.transform.position, direction * 3, out hit, 3, mask))
         {
+            if (hit.transform.gameObject.layer == LayerMask.GetMask("UpgradeLayer"))
+                return;
             Debug.DrawRay(room.transform.position, direction * 3, Color.green, 100);
             ConstructRoom(direction, room);
         }
@@ -61,11 +63,15 @@ public class RoomHandler : MonoBehaviour
         //Get radius of room to edge
         //Enables finding rooms adjacent to this room without getting diagonals
         float radius = Mathf.Sqrt(1.55f * 1.55f);
-        LayerMask mask = LayerMask.GetMask("RoomCast");
+
+        //TODO: add UpgradeLayer to layermask, add check for mask interacted with. If roomcast, add to remove, otherwise delete newRoom
+        LayerMask mask = LayerMask.GetMask("RoomCast", "UpgradeLayer");
 
         Collider[] adjacentColliders = Physics.OverlapSphere(newRoom.transform.position, radius, mask);
         foreach (var col in adjacentColliders)
         {
+            if (col.gameObject.layer == LayerMask.GetMask("RoomCast"))
+                continue;
             var instance = col.gameObject.GetComponent<BaseRoom>();
             if (instance != newRoom)
                 newRoom.adjacentRooms.Add(instance);
