@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class slinkScoopScript : MonoBehaviour
 {
-    //SORRY ROB!!! i just wanted to get this working even as a hack job solution.
-
-    [SerializeField] itemScriptableObject[] inventory;
+    public itemScriptableObject[] inventory;
     [SerializeField] SpriteRenderer display1, display2, display3;
     [SerializeField] Transform scoopZone;
     [SerializeField] LayerMask groundItemLayer;

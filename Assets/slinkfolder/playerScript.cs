@@ -79,9 +79,26 @@ public class playerScript : MonoBehaviour
     {
         if (context.performed)
         {
+            bool usedBin = false;
             Debug.Log("USE!!");
             if (!fishing)
             {
+                //FIRST CHECK - IS THERE A BIN THAT ACCEPTS NOTHING?
+                if(currentItem == itemScriptableObject.itemType.NOTHING)
+                {
+                    Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, binLayer);
+                    foreach (Collider thing in contacts)
+                    {
+                        binScript theBin = thing.GetComponent<binScript>();
+                        if (theBin.acceptsNothing)
+                        {
+                            theBin.forceEvent(this);
+                            usedBin = true;
+                            break;
+                        }
+                    }
+                }
+
                 //IF HOLDING AN ITEM IT IS USED IN ITEM SPECIFIC STUFF
                 if (currentItem != itemScriptableObject.itemType.NOTHING)
                 {
@@ -89,19 +106,22 @@ public class playerScript : MonoBehaviour
                     foreach (Collider thing in contacts)
                     {
                         binScript theBin = thing.GetComponent<binScript>();
-                        if (theBin.acceptItem(itemTransform.gameObject.GetComponent<itemReference>().myItem))
+                        if (theBin.acceptItem(itemTransform.gameObject.GetComponent<itemReference>().myItem, this))
                         {
+                            theBin.lastInteractedPlayer = this;
                             currentItem = itemScriptableObject.itemType.NOTHING;
                             Destroy(itemTransform.gameObject);
                             itemTransform = null;
+                            usedBin = true;
+                            break;
                         }
                     }
                 }
                 //IF YOU HOLD NOTHING THEN YOU CAN USE THE OTHER STUFF. SPECIFIED HEREIN
-                if (currentItem == itemScriptableObject.itemType.NOTHING)
+                if (currentItem == itemScriptableObject.itemType.NOTHING && !usedBin)
                 {
-                    Collider[] contacts = Physics.OverlapSphere(transform.position, .6f, interactibleLayer);
-                    foreach (Collider thing in contacts)
+                    Collider[] contacts2 = Physics.OverlapSphere(transform.position, .6f, interactibleLayer);
+                    foreach (Collider thing in contacts2)
                     {
                         if (thing.tag == "fishing hole")
                         {
@@ -112,6 +132,7 @@ public class playerScript : MonoBehaviour
                             else anim.Play("fishingIdleFlipped");
                             rb.constraints = RigidbodyConstraints.FreezeAll;
                             transform.position = new Vector3(thing.transform.position.x, transform.position.y, thing.transform.position.z);
+                            break;
                         }
                     }
                 }
@@ -140,6 +161,11 @@ public class playerScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void startGame(InputAction.CallbackContext context)
+    {
+        god.startGame();
     }
         // Start is called before the first frame update
         void Start()
@@ -199,13 +225,15 @@ public class playerScript : MonoBehaviour
 
     }
 
-    void getItem(itemScriptableObject myObject)
+    public void getItem(itemScriptableObject myObject)
     {
         GameObject newObject = Instantiate(myObject.itemObject);
         currentItem = newObject.gameObject.GetComponent<itemReference>().myItem.myType;
         itemTransform = newObject.transform;
         newObject.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
     }
+
+
 }
 
 

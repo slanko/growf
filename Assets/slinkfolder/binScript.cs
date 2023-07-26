@@ -9,7 +9,8 @@ public class binScript : MonoBehaviour
 {
     [SerializeField] RoomBaseObject myRoom;
     TestConstruction constructor;
-    [SerializeField] bool presetRecipe, noList;
+    [SerializeField] bool presetRecipe, noList, noDestroy;
+    public bool acceptsNothing;
 
     [SerializeField]
     List<recipeEntry> recipe;
@@ -18,6 +19,11 @@ public class binScript : MonoBehaviour
     string recipeName;
     public itemType firstItem;
     GameObject selectedRoomPrefab;
+    public playerScript lastInteractedPlayer;
+
+    [Header("Single Item Specific")]
+    [SerializeField] bool singleItemMode;
+    [SerializeField] itemScriptableObject itemNeeded;
 
     [Header("Room Construction Specific")]
     public bool checkAdjacency;
@@ -25,6 +31,7 @@ public class binScript : MonoBehaviour
     string direction;
     [SerializeField] LayerMask binLayer, roomCastLayer;
     [SerializeField] QueryTriggerInteraction triggerInteraction;
+
 
     [SerializeField]
     UnityEvent myEvent;
@@ -45,46 +52,58 @@ public class binScript : MonoBehaviour
         if(checkAdjacency) checkIfAdjacent();
     }
 
-    public bool acceptItem(itemScriptableObject theItem)
+    public bool acceptItem(itemScriptableObject theItem, playerScript player)
     {
         bool toReturn = false;
-
-        if (!recipeSet && !presetRecipe)
+        lastInteractedPlayer = player;
+        if (!singleItemMode)
         {
-            recipe.Clear();
-            recipeName = theItem.recipeName;
-            foreach(recipeEntry entry in theItem.recipe)
+            if (!recipeSet && !presetRecipe && !acceptsNothing)
             {
-                recipeEntry newEntry = new recipeEntry();
-                newEntry.entryType = entry.entryType;
-                newEntry.amountNeeded = entry.amountNeeded;
-                recipe.Add(newEntry);
-                firstItem = theItem.myType;
-                if(theItem.instantiateRoom != null) selectedRoomPrefab = theItem.instantiateRoom;
+                recipe.Clear();
+                recipeName = theItem.recipeName;
+                foreach (recipeEntry entry in theItem.recipe)
+                {
+                    recipeEntry newEntry = new recipeEntry();
+                    newEntry.entryType = entry.entryType;
+                    newEntry.amountNeeded = entry.amountNeeded;
+                    recipe.Add(newEntry);
+                    firstItem = theItem.myType;
+                    if (theItem.instantiateRoom != null) selectedRoomPrefab = theItem.instantiateRoom;
+                }
+                recipeSet = true;
+                toReturn = true;
+                myText.text = generateList();
             }
-            recipeSet = true;
-            toReturn = true;
-            myText.text = generateList();
+            else
+            {
+                for (int i = 0; i < recipe.Count; i++)
+                {
+                    if (recipe[i].entryType == theItem.myType && recipe[i].amountNeeded > 0)
+                    {
+                        toReturn = true;
+                        recipeEntry copyEntry;
+                        copyEntry.entryType = recipe[i].entryType;
+                        copyEntry.amountNeeded = recipe[i].amountNeeded - 1;
+                        recipe[i] = copyEntry;
+                    }
+                }
+                myText.text = generateList();
+            }
+            if (checkFulfilment())
+            {
+                myEvent.Invoke();
+                if (!noDestroy) Destroy(this.gameObject);
+            }
         }
         else
         {
-            for (int i = 0; i < recipe.Count; i++)
+            if (theItem == itemNeeded)
             {
-                if (recipe[i].entryType == theItem.myType && recipe[i].amountNeeded > 0)
-                {
-                    toReturn = true;
-                    recipeEntry copyEntry;
-                    copyEntry.entryType = recipe[i].entryType;
-                    copyEntry.amountNeeded = recipe[i].amountNeeded - 1;
-                    recipe[i] = copyEntry;
-                }
+                toReturn = true;
+                myEvent.Invoke();
+                if (!noDestroy) Destroy(this.gameObject);
             }
-            myText.text = generateList();
-        }
-        if (checkFulfilment())
-        {
-            myEvent.Invoke();
-            Destroy(this.gameObject);
         }
         return toReturn;
     }
@@ -153,4 +172,22 @@ public class binScript : MonoBehaviour
         if(selectedRoomPrefab != null) Instantiate(selectedRoomPrefab, myRoom.transform.position, myRoom.transform.rotation, myRoom.transform);
     }
 
+    [Header("Scoop Specific")] //this sucks but hey whatever. the specific stuff won't throw any errors if it's not used.
+    [SerializeField] slinkScoopScript scoop; //anyway it has to be here because i need the player that interacted with the bin.
+    [SerializeField] itemScriptableObject nothing;
+
+    public void giveItemFromScoop(int index)
+    {
+        if(scoop.inventory[index] != nothing)
+        {
+            lastInteractedPlayer.getItem(scoop.inventory[index]);
+            scoop.inventory[index] = nothing;
+        }
+    }
+
+    public void forceEvent(playerScript player)
+    {
+        lastInteractedPlayer = player;
+        myEvent.Invoke();
+    }
 }
