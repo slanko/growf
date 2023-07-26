@@ -54,25 +54,34 @@ public class RoomHandler : MonoBehaviour
     void ConstructRoom(Vector3 direction, BaseRoom providedRoom)
     {
         var newRoom = Instantiate(roomTemplate, providedRoom.transform.position + (direction * 3), Quaternion.identity).GetComponent<BaseRoom>();
+        newRoom.gameObject.name = $"Room {idValue}";
         providedRoom.adjacentRooms.Add(newRoom);
         newRoom.receiveGodAndIdentity(this, idValue++);
 
         //Get radius of room to edge
         //Enables finding rooms adjacent to this room without getting diagonals
-        float radius = Mathf.Sqrt(1.5f * 1.5f);
+        float radius = Mathf.Sqrt(1.55f * 1.55f);
         LayerMask mask = LayerMask.GetMask("RoomCast");
 
         Collider[] adjacentColliders = Physics.OverlapSphere(newRoom.transform.position, radius, mask);
         foreach (var col in adjacentColliders)
         {
-            if(col.gameObject.GetComponent<BaseRoom>() != newRoom)
-                newRoom.adjacentRooms.Add(col.gameObject.GetComponent<BaseRoom>());
+            var instance = col.gameObject.GetComponent<BaseRoom>();
+            if (instance != newRoom)
+                newRoom.adjacentRooms.Add(instance);
+
             Debug.Log(col.gameObject.name);
         }
-        Debug.Log($"{newRoom} of id {idValue} has {newRoom.adjacentRooms.Count} adjacent rooms");
 
         if (newRoom.adjacentRooms.Count > 1)
+        {
+            foreach(var room in newRoom.adjacentRooms)
+            {
+                if (!room.adjacentRooms.Contains(newRoom))
+                    room.adjacentRooms.Add(newRoom);
+            }
             AssignRoomValueFromAdjacents(newRoom);
+        }
         else
             newRoom.roomDistanceFromCenter = providedRoom.roomDistanceFromCenter + 1;
 
@@ -119,7 +128,7 @@ public class RoomHandler : MonoBehaviour
         }
     }
 
-    public void ReassignRoomDistances()
+    public void ReassignRoomDistancesAtFrameEnd()
     {
         StartCoroutine(ReassignDistanceFromCoreQueued());
     }

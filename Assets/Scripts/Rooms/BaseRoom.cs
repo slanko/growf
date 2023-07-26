@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BaseRoom : MonoBehaviour
 {
@@ -52,7 +53,10 @@ public class BaseRoom : MonoBehaviour
     void HandleRoomDestruction()
     {
         (bool canDestroy, List<BaseRoom> targets) targetsOfDestruction = TargetsCanBeDestroyed();
-        foreach(var room in adjacentRooms)
+        foreach (var room in adjacentRooms)
+            room.adjacentRooms.Remove(this);
+
+        foreach (var room in adjacentRooms)
         {
             Vector3 position = room.transform.position - gameObject.transform.position;
             constructor.CloseDoor(position);
@@ -64,12 +68,7 @@ public class BaseRoom : MonoBehaviour
                 DestroyRoom(room);
         }
         else
-            Destroy(this.gameObject);
-    }
-
-    private void OnDestroy()
-    {
-        constructor.ReassignRoomDistances();
+            DestroyRoom(this);
     }
 
     void DestroyRoom(BaseRoom roomToDestroy)
@@ -78,12 +77,12 @@ public class BaseRoom : MonoBehaviour
             room.adjacentRooms.Remove(roomToDestroy);
         Destroy(roomToDestroy.gameObject);
     }
-
     (bool, List<BaseRoom>) TargetsCanBeDestroyed()
     {
+        constructor.ReassignRoomDistancesAtFrameEnd();
         Queue<BaseRoom> roomQueue = new Queue<BaseRoom>();
-        HashSet<BaseRoom> queuedRooms = new HashSet<BaseRoom>();
-        List<BaseRoom> roomFilter = new List<BaseRoom>();
+        List<BaseRoom> queuedRooms = new List<BaseRoom>();
+        HashSet<BaseRoom> roomFilter = new HashSet<BaseRoom>();
         List<BaseRoom> targets = new List<BaseRoom>();
         //Add the first room
         roomQueue.Enqueue(this);
@@ -111,7 +110,10 @@ public class BaseRoom : MonoBehaviour
                         //If this is the first room, then do NOT do this
                         if (roomAdjacent.roomDistanceFromCenter < roomDistanceFromCenter)
                             if (firstRoom)
+                            {
+                                targets.Add(room);
                                 continue;
+                            }
                             else
                                 return (false, null);
                         else
@@ -122,7 +124,8 @@ public class BaseRoom : MonoBehaviour
                                 targets.Add(roomAdjacent);
                         }
                     }
-                    roomFilter.Add(room);
+                    if(!roomFilter.Contains(room))
+                        roomFilter.Add(room);
                 }
                 firstRoom = false;
                 queuedRooms.Clear();
