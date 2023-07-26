@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5503664362296101121}
   - component: {fileID: 4935972141874067055}
   - component: {fileID: 1335080490412409137}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1254036339221671640}
   - component: {fileID: 6524526750038163280}
   - component: {fileID: 1700724255009671287}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8124732197991966313}
   - component: {fileID: 1956447648450709401}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6439618232610771250}
   - component: {fileID: 944645029108855626}
   - component: {fileID: 1107263660737030134}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 3964511170002394731}
   - component: {fileID: 3996547213448961116}
   - component: {fileID: 579004406032573148}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 2918553583318472337}
   - component: {fileID: 6375120792261113798}
   - component: {fileID: 4649988604283553249}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 6498822014016846286}
   - component: {fileID: 2088512583649437164}
   - component: {fileID: 8688503624509946582}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 4937308360672991707}
   - component: {fileID: 2000955813150655136}
   - component: {fileID: 306714437298622069}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 6695474008432181097}
   - component: {fileID: 2601052932703518042}
   - component: {fileID: 8897356439621461051}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3511235799784409675}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 8218095963293711610}
   - component: {fileID: 3669900369168196177}
   - component: {fileID: 1123457533868259592}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 2541911148351449741}
   - component: {fileID: 1412153115197360962}
   - component: {fileID: 3020087334019093855}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,7 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7235383691045697745}
   - component: {fileID: 7238736509531329373}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Engine Room Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8089260923852669607}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ GameObject:
   - component: {fileID: 270225315124740319}
   - component: {fileID: 4867431647689674250}
   - component: {fileID: 8829864168987713499}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1174,7 +1174,7 @@ GameObject:
   - component: {fileID: 589342492344568583}
   - component: {fileID: 337793804658785557}
   - component: {fileID: 1213345377328971743}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1270,7 +1270,7 @@ GameObject:
   - component: {fileID: 8257407099884890005}
   - component: {fileID: 3264637158121277618}
   - component: {fileID: 7014099977611220148}
-  m_Layer: 6
+  m_Layer: 14
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1352,6 +1352,10 @@ PrefabInstance:
     - target: {fileID: 3355480243553448297, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: m_Name
       value: Bin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243553448297, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: noList
@@ -1464,6 +1468,10 @@ PrefabInstance:
     - target: {fileID: 3355480243553448302, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3355480243574939468, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3355480243574939470, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: m_text
