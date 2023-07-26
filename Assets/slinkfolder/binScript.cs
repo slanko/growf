@@ -7,8 +7,8 @@ using UnityEngine.Events;
 
 public class binScript : MonoBehaviour
 {
-    [SerializeField] RoomBaseObject myRoom;
-    TestConstruction constructor;
+    [SerializeField] BaseRoom myRoom;
+    RoomHandler constructor;
     [SerializeField] bool presetRecipe, noList, noDestroy;
     public bool acceptsNothing;
 
@@ -48,7 +48,7 @@ public class binScript : MonoBehaviour
     {
         if (noList) myText.text = "";
         else myText.text = "MATERIAL\nv";
-        constructor = GameObject.Find("GOD").GetComponent<TestConstruction>();
+        constructor = GameObject.Find("GOD").GetComponent<RoomHandler>();
         if(checkAdjacency) checkIfAdjacent();
     }
 

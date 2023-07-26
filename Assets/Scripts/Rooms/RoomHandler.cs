@@ -77,7 +77,7 @@ public class RoomHandler : MonoBehaviour
         {
             foreach(var room in newRoom.adjacentRooms)
             {
-                if (!room.adjacentRooms.Contains(newRoom))
+                if (!room.adjacentRooms.Contains(newRoom) && room != null)
                     room.adjacentRooms.Add(newRoom);
             }
             AssignRoomValueFromAdjacents(newRoom);

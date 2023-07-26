@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3729786566913010191}
   - component: {fileID: 5670966448462316354}
   - component: {fileID: 8092483371368449300}
-  - component: {fileID: 1992835688582036005}
   - component: {fileID: 6415054376533377949}
+  - component: {fileID: 2173051031872498179}
   m_Layer: 6
   m_Name: FLOOR
   m_TagString: Untagged
@@ -95,23 +95,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1992835688582036005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264502021157667350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 460fb3ef08368a443ad45ad54c28adb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  adjacentRooms: []
-  roomDistanceFromCenter: 0
-  Id: 0
-  MarkedForDeath: 0
-  upgradePrefabs: []
 --- !u!65 &6415054376533377949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125,6 +108,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2173051031872498179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264502021157667350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e1e684ae5f4ac428fb5f4dd1b680cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adjacentRooms: []
+  roomDistanceFromCenter: 0
+  obstacleHealthReduction: 1
+  mineHealthReduction: 2
+  Id: 0
 --- !u!1 &1235457417922529698
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myRoom
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 2173051031872498179}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: noList
       value: 1
@@ -723,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myRoom
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 2173051031872498179}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: noList
       value: 1
@@ -880,7 +880,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myRoom
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 2173051031872498179}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -900,7 +900,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 0}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1057,7 +1057,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myRoom
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 2173051031872498179}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: noList
       value: 1
@@ -1214,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: myRoom
       value: 
-      objectReference: {fileID: 1992835688582036005}
+      objectReference: {fileID: 2173051031872498179}
     - target: {fileID: 3355480243553448298, guid: 6905b24b1bae5ce4d9b6528271080d20, type: 3}
       propertyPath: noList
       value: 1

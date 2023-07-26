@@ -155,7 +155,7 @@ public class playerScript : MonoBehaviour
                 Collider[] roomColliders = Physics.OverlapBox(transform.position, new Vector3(.1f, .1f, .1f), Quaternion.identity, roomMaskLayer, triggerInteract);
                 if(roomColliders.Length > 0)
                 {
-                    RoomBaseObject room = roomColliders[0].GetComponent<RoomBaseObject>();
+                    BaseRoom room = roomColliders[0].GetComponent<BaseRoom>();
                     room.ReduceHealth(1);
                     Debug.Log("Saw Used");
                 }
