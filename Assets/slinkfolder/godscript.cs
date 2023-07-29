@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -17,6 +18,12 @@ public class godscript : MonoBehaviour
     [Header("Storm Stuff"), SerializeField] Slider stormDistSlider;
     [SerializeField] Transform stormTransform;
     [SerializeField] float stormSpeed, stormSpeedUpRate, stormDistance = 1000f;
+    [SerializeField] WindZone wind; //we need this for particle effects to retain feeling of motion
+    [SerializeField] TextMeshProUGUI highscoreTracker;
+
+    public int livingPlayers;
+    [SerializeField] GameObject youLoseText;
+    bool gameEnded;
 
 
 
@@ -31,6 +38,7 @@ public class godscript : MonoBehaviour
     void Start()
     {
         manager = GetComponent<PlayerInputManager>();
+        highscoreTracker.text = "HI:" + PlayerPrefs.GetInt("highscore", 1000) + "m";
     }
 
     // Update is called once per frame
@@ -54,7 +62,15 @@ public class godscript : MonoBehaviour
             if (stormDistance < 0) stormDistance = 0;
             stormDistSlider.value = 1000 - stormDistance;
             stormTransform.position = new Vector3(0, 5, -stormDistance);
+
+            //are any players alive? if not, game is over!
+            if(!gameEnded && livingPlayers <= 0)
+            {
+                gameEnded = true;
+                StartCoroutine(loseGame());
+            }
         }
+        wind.windMain = 33 * speedMult;
     }
 
     public void unityEventCheck()
@@ -92,5 +108,13 @@ public class godscript : MonoBehaviour
         gameStarted = true;
         manager.DisableJoining();
         gameStartText.SetActive(false);
+    }
+
+    IEnumerator loseGame()
+    {
+        youLoseText.SetActive(true);
+        if(Mathf.Ceil(distanceTraveled) > PlayerPrefs.GetInt("highscore", 1000)) PlayerPrefs.SetInt("highscore", (int)Mathf.Ceil(distanceTraveled));
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -131,11 +131,33 @@
                 },
                 {
                     "name": "",
+                    "id": "d4a71e93-8b2b-4669-b3e1-a2729d152bfa",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
+                    "action": "consume",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "827fca04-cd6a-42de-9255-45a2b16a6ff6",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "startbutton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72adb95a-a27c-4fb6-aef9-b68c3a4f0ba2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "joystick",
                     "action": "startbutton",
                     "isComposite": false,
                     "isPartOfComposite": false

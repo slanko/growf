@@ -20,3 +20,5 @@ MonoBehaviour:
     amountNeeded: 4
   itemObject: {fileID: 4910551749320948711, guid: b17635fbdd3c1c74b963742b2061c2eb, type: 3}
   instantiateRoom: {fileID: 7367178458239439756, guid: bd8668fa5a762ab4a9fb9d48682fdec9, type: 3}
+  reserveSpaceNorth: 0
+  reserveSpaceSouth: 1

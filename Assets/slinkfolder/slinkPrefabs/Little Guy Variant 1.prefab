@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 371496347217431012, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
+      propertyPath: myHungerDisplay
+      value: 
+      objectReference: {fileID: 7349428421636057172, guid: 6779887f8a859a144ac2d7fc9ecbb2a8, type: 3}
     - target: {fileID: 371496347217431015, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371496347217431019, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
       propertyPath: m_Name
-      value: Little Guy
+      value: Little Guy Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 371496347363781960, guid: f2e66c253e1d54c4183546461999afb9, type: 3}
       propertyPath: spriteSet.Array.data[0]

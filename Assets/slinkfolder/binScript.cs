@@ -20,6 +20,8 @@ public class binScript : MonoBehaviour
     public itemType firstItem;
     GameObject selectedRoomPrefab;
     public playerScript lastInteractedPlayer;
+    [SerializeField] GameObject spaceReserverNorth, spaceReserverSouth;
+    GameObject northInstance, southInstance;
 
     [Header("Single Item Specific")]
     [SerializeField] bool singleItemMode;
@@ -31,6 +33,9 @@ public class binScript : MonoBehaviour
     string direction;
     [SerializeField] LayerMask binLayer, roomCastLayer;
     [SerializeField] QueryTriggerInteraction triggerInteraction;
+
+    [Header("Gun Specific"), SerializeField] bool gunBin;
+    [SerializeField] gunScript gun;
 
 
     [SerializeField]
@@ -60,20 +65,42 @@ public class binScript : MonoBehaviour
         {
             if (!recipeSet && !presetRecipe && !acceptsNothing)
             {
-                recipe.Clear();
-                recipeName = theItem.recipeName;
-                foreach (recipeEntry entry in theItem.recipe)
+                bool hasSpace = false;
+                //first we need to check - does it need to reserve space?
+                if (theItem.reserveSpaceNorth)
                 {
-                    recipeEntry newEntry = new recipeEntry();
-                    newEntry.entryType = entry.entryType;
-                    newEntry.amountNeeded = entry.amountNeeded;
-                    recipe.Add(newEntry);
-                    firstItem = theItem.myType;
-                    if (theItem.instantiateRoom != null) selectedRoomPrefab = theItem.instantiateRoom;
+                    if(!Physics.Raycast(transform.position, Vector3.forward, 2f, roomCastLayer))
+                    {
+                        northInstance = Instantiate(spaceReserverNorth, myRoom.transform);
+                        hasSpace = true;
+                    }
                 }
-                recipeSet = true;
-                toReturn = true;
-                myText.text = generateList();
+                if (theItem.reserveSpaceSouth)
+                {
+                    if (!Physics.Raycast(transform.position, Vector3.back, 2f, roomCastLayer))
+                    {
+                        southInstance = Instantiate(spaceReserverSouth, myRoom.transform);
+                        hasSpace = true;
+                    }
+                }
+                if (!theItem.reserveSpaceNorth && !theItem.reserveSpaceSouth) hasSpace = true;
+                if (hasSpace)
+                {
+                    recipe.Clear();
+                    recipeName = theItem.recipeName;
+                    foreach (recipeEntry entry in theItem.recipe)
+                    {
+                        recipeEntry newEntry = new recipeEntry();
+                        newEntry.entryType = entry.entryType;
+                        newEntry.amountNeeded = entry.amountNeeded;
+                        recipe.Add(newEntry);
+                        firstItem = theItem.myType;
+                        if (theItem.instantiateRoom != null) selectedRoomPrefab = theItem.instantiateRoom;
+                    }
+                    recipeSet = true;
+                    toReturn = true;
+                    myText.text = generateList();
+                }
             }
             else
             {
@@ -98,7 +125,7 @@ public class binScript : MonoBehaviour
         }
         else
         {
-            if (theItem == itemNeeded)
+            if ((theItem == itemNeeded && !gunBin) || (theItem == itemNeeded && gunBin && gun.currentAmmo < gun.ammoMax))
             {
                 toReturn = true;
                 myEvent.Invoke();
@@ -139,7 +166,7 @@ public class binScript : MonoBehaviour
         constructor.CreateRoom(direction, myRoom);
     }
 
-    void checkIfAdjacent()
+    public void checkIfAdjacent()
     {
         //two raycast system. first checks for other bins and deletes them. then the bin checks for rooms (if there are other bins there are probably rooms but hey) and then if there is it deletes itself.
         Vector3 castDirection = new Vector3();
@@ -168,8 +195,10 @@ public class binScript : MonoBehaviour
 
     public void spawnPrefab()
     {
-        
-        if(selectedRoomPrefab != null) Instantiate(selectedRoomPrefab, myRoom.transform.position, myRoom.transform.rotation, myRoom.transform);
+        //delete space reservers
+        if (northInstance != null) Destroy(northInstance);
+        if (southInstance != null) Destroy(southInstance);
+        if (selectedRoomPrefab != null) Instantiate(selectedRoomPrefab, myRoom.transform.position, myRoom.transform.rotation, myRoom.transform);
     }
 
     [Header("Scoop Specific")] //this sucks but hey whatever. the specific stuff won't throw any errors if it's not used.
@@ -190,4 +219,6 @@ public class binScript : MonoBehaviour
         lastInteractedPlayer = player;
         myEvent.Invoke();
     }
+
+
 }

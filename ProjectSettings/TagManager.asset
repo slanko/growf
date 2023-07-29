@@ -22,7 +22,7 @@ TagManager:
   - groundItemLayer
   - WallLayer
   - UpgradeLayer
-  - 
+  - obstacleLayer
   - 
   - 
   - 

@@ -25,6 +25,7 @@ public class itemScriptableObject : ScriptableObject
     public string recipeName;
     public List<binScript.recipeEntry> recipe;
     public GameObject itemObject, instantiateRoom;
+    public bool reserveSpaceNorth, reserveSpaceSouth;
 
 
 }

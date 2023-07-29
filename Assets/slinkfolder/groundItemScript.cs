@@ -20,6 +20,6 @@ public class groundItemScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.back * moveSpeed * Time.deltaTime * GOD.speedMult);
-        if (transform.position.z < -10) Destroy(this.gameObject);
+        if (transform.position.z < -20) Destroy(this.gameObject);
     }
 }

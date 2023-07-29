@@ -9,6 +9,10 @@ public class itemSpawner : MonoBehaviour
     [SerializeField] GameObject itemToSpawn;
     [SerializeField] itemScriptableObject defaultItem;
     [SerializeField] int minTime, maxTime;
+    [Header("Obstacle Stuff"), SerializeField] GameObject obstacle;
+    [SerializeField] float obstacleChance;
+    [SerializeField] GameObject[] obstacleObjects;
+
     [System.Serializable]
     struct itemSpawnStruct
     {
@@ -37,16 +41,20 @@ public class itemSpawner : MonoBehaviour
 
     IEnumerator itemSpawnRoutine()
     {
-        itemScriptableObject pickedItem = defaultItem;
-        for(int i = 0; i < possibleItems.Count; i++)
+        if (Random.Range(0f, 100f) > obstacleChance * GOD.speedMult)
         {
-            if(Random.Range(0, 101) < possibleItems[i].chance)
+            itemScriptableObject pickedItem = defaultItem;
+            for (int i = 0; i < possibleItems.Count; i++)
             {
-                pickedItem = possibleItems[i].myObject;
+                if (Random.Range(0, 101) < possibleItems[i].chance)
+                {
+                    pickedItem = possibleItems[i].myObject;
+                }
             }
+            groundItemScript newItem = Instantiate(itemToSpawn, spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity).GetComponent<groundItemScript>();
+            newItem.myObject = pickedItem;
         }
-        groundItemScript newItem = Instantiate(itemToSpawn, spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity).GetComponent<groundItemScript>();
-        newItem.myObject = pickedItem;
+        else Instantiate(obstacleObjects[Random.Range(0, obstacleObjects.Length)], spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity);
         yield return new WaitForSeconds(Random.Range(minTime, maxTime) * 1 - (GOD.speedMult / 2));
         StartCoroutine(itemSpawnRoutine());
     }

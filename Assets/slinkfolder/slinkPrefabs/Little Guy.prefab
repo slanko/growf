@@ -101,6 +101,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   triggerInteract: 2
+  interactCooldownFrames: 15
+  hungerMax: 100
+  hungerDecayRate: 0.5
+  plantRestoreAmount: 25
+  myHungerDisplay: {fileID: 4947803860935883795, guid: 519b33897f1cb8b499a1c7554fbd5301, type: 3}
+  roadDeathHeightThreshold: 0
+  camRefocusDelay: 1
   itemPoint: {fileID: 371496346944676459}
 --- !u!136 &371496347217431018
 CapsuleCollider:

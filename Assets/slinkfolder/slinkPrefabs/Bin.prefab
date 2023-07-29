@@ -111,6 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c7c72bc701f3e4a8c421031577063b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRoom: {fileID: 0}
+  presetRecipe: 0
+  noList: 0
+  noDestroy: 0
+  acceptsNothing: 0
   recipe:
   - entryType: 1
     amountNeeded: 2
@@ -118,9 +123,23 @@ MonoBehaviour:
     amountNeeded: 1
   myText: {fileID: 3355480243574939470}
   firstItem: 0
+  lastInteractedPlayer: {fileID: 0}
+  singleItemMode: 0
+  itemNeeded: {fileID: 0}
+  checkAdjacency: 0
+  direction: 
+  binLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  roomCastLayer:
+    serializedVersion: 2
+    m_Bits: 16448
+  triggerInteraction: 0
   myEvent:
     m_PersistentCalls:
       m_Calls: []
+  scoop: {fileID: 0}
+  nothing: {fileID: 0}
 --- !u!1 &3355480243574939468
 GameObject:
   m_ObjectHideFlags: 0

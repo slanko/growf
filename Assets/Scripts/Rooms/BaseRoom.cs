@@ -7,8 +7,8 @@ public class BaseRoom : MonoBehaviour
 {
     public List<BaseRoom> adjacentRooms = new List<BaseRoom>();
     public int roomDistanceFromCenter;
-    protected int roomMaxHealth = 2;
-    protected int roomHealth = 2;
+    public int roomMaxHealth = 2;
+    public int roomHealth = 2;
     protected bool isUpgraded;
     protected Upgrade upgrade = null;
 
